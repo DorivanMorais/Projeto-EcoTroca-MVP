@@ -1,0 +1,183 @@
+/* css/main.css */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #e6f9f0 0%, #dbf3e5 100%);
+  color: var(--color-text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Smartphone Wrapper Frame (Shows on Desktop, collapses on Mobile) */
+.device-container {
+  position: relative;
+  width: 412px;
+  height: 840px;
+  background-color: var(--color-background);
+  border: 12px solid #1E293B;
+  border-radius: 40px;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.3), 0 0 0 4px rgba(30, 41, 59, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Notch Simulator for Desktop Mode */
+.device-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 24px;
+  background-color: #1E293B;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.notch-camera {
+  width: 8px;
+  height: 8px;
+  background-color: #0F172A;
+  border-radius: 50%;
+}
+
+.notch-speaker {
+  width: 45px;
+  height: 4px;
+  background-color: #334155;
+  border-radius: var(--radius-full);
+}
+
+/* Scrollbar styling for virtual app container */
+.phone-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--color-background);
+}
+
+/* Custom Scrollbar for phone container */
+.phone-screen::-webkit-scrollbar {
+  width: 5px;
+}
+.phone-screen::-webkit-scrollbar-track {
+  background: transparent;
+}
+.phone-screen::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.2);
+  border-radius: var(--radius-full);
+}
+
+/* Core SPA Layout Wrappers */
+#login-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#app-shell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.app-content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 90px; /* Leave space for bottom navigation bar */
+}
+
+/* Navigation, Shell Header, Global Modals Layout */
+.app-page {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-page.active {
+  display: flex;
+}
+
+.app-page.enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Global utility classes */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--color-text-main);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  color: var(--color-text-sec);
+  line-height: 1.5;
+}
+
+/* Responsive styles - Fullscreen on mobile devices */
+@media (max-width: 600px) {
+  body {
+    background: var(--color-background);
+  }
+  .device-container {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .device-notch {
+    display: none;
+  }
+}
+
+/* Animations declarations */
+@keyframes pulseGlow {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(0.95); opacity: 0.5; }
+}
+
+@keyframes spinnerRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spinnerRotate 0.6s linear infinite;
+}
